@@ -26,11 +26,11 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         TextView title = (TextView) findViewById(R.id.app_title);
-        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/MAXWELL_BOLD.ttf");
+        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/MAXWELL_REGULAR.ttf");
         title.setTypeface(font);
 
         TextView startButton = (TextView) findViewById(R.id.start_button);
-        font = Typeface.createFromAsset(getAssets(), "fonts/MAXWELL_REGULAR.ttf");
+        font = Typeface.createFromAsset(getAssets(), "fonts/MAXWELL_LIGHT.ttf");
         startButton.setTypeface(font);
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
