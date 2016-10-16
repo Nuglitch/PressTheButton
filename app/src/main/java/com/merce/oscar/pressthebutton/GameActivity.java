@@ -1,6 +1,7 @@
 package com.merce.oscar.pressthebutton;
 
 import android.content.Intent;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -33,6 +34,7 @@ public class GameActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_game);
+        setVolumeControlStream(AudioManager.STREAM_MUSIC); //is able to change the volume
 
         try {
             initGame(); //start game
@@ -40,6 +42,19 @@ public class GameActivity extends AppCompatActivity {
 
         }
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SoundManager.getInstance().playBackgroundMusic();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        SoundManager sm = SoundManager.getInstance();
+        sm.stopBackgroundMusic();
     }
 
     public void initGame() {

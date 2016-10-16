@@ -3,7 +3,9 @@ package com.merce.oscar.pressthebutton;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.AudioManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -24,10 +26,12 @@ public class MenuActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_menu);
+        setVolumeControlStream(AudioManager.STREAM_MUSIC); //is able to change the volume
 
         TextView title = (TextView) findViewById(R.id.app_title);
         Typeface font = Typeface.createFromAsset(getAssets(), "fonts/MAXWELL_REGULAR.ttf");
         title.setTypeface(font);
+        SoundManager.getInstance().init(this);
 
         TextView startButton = (TextView) findViewById(R.id.start_button);
         font = Typeface.createFromAsset(getAssets(), "fonts/MAXWELL_LIGHT.ttf");
@@ -42,6 +46,24 @@ public class MenuActivity extends AppCompatActivity {
                 MenuActivity.this.startActivityForResult(myIntent, PICK_CONTACT_REQUEST);
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SoundManager.getInstance().playMenuMusic();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        SoundManager.getInstance().stopMenuMusic();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SoundManager.getInstance().releaseSounds();
     }
 
     protected void onActivityResult (int requestCode, int resultCode, Intent data) {

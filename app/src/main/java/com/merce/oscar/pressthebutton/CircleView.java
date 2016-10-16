@@ -77,9 +77,8 @@ public class CircleView extends ElementView implements View.OnClickListener, Pen
     public void onClick(View v) {
         Vibrator vibe = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE); //do a little vibration
         vibe.vibrate(50);
-
+        SoundManager.getInstance().playTabEffect();
         this.setVisibility(View.INVISIBLE);
-
         game.taskComplete(this);
     }
 

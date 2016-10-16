@@ -3,6 +3,42 @@
 
     <item
         is-multidex="true"
+        jar="G:\Users\Oscar\Projectes_Android\PressTheButton\PressTheButton\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="21.1.2"
+        sha1="debf30ce0a7560396b6235edef77e447006454c2">
+        <dex dex="G:\Users\Oscar\Projectes_Android\PressTheButton\PressTheButton\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-23.3.0_fd77012b69782f2df3d12d2f078f86281d066b13\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="G:\Users\Oscar\Projectes_Android\PressTheButton\PressTheButton\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="21.1.2"
+        sha1="884cebb02a0bd9cbffc45980001d41f57a2b4b71">
+        <dex dex="G:\Users\Oscar\Projectes_Android\PressTheButton\PressTheButton\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_dfbc953a4960b11a584afde2787f3678798a68bd\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="G:\Users\Oscar\Projectes_Android\PressTheButton\PressTheButton\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="21.1.2"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="G:\Users\Oscar\Projectes_Android\PressTheButton\PressTheButton\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.3.0_12d38d0bb2f2fe9091589a4f21ae5d5a23a5e5bb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="G:\Users\Oscar\Android_sdk\sdk\extras\android\m2repository\com\android\support\support-annotations\23.3.0\support-annotations-23.3.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="21.1.2"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="G:\Users\Oscar\Projectes_Android\PressTheButton\PressTheButton\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.3.0_10964f60146c6a871d8291d9ce4724906c275951\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="G:\Users\Oscar\Projectes_Android\PressTheButton\PressTheButton\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.3.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -34,17 +70,8 @@
         jumboMode="true"
         optimize="true"
         revision="21.1.2"
-        sha1="05c1e18dcd7795352eaaab7909c2c4db6884f3c5">
+        sha1="499c5b37c1088fed19c625a980d5e98e0058c017">
         <dex dex="G:\Users\Oscar\Projectes_Android\PressTheButton\PressTheButton\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_3d00d916da1f95df21e89c4662726281b876ad88\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="G:\Users\Oscar\Projectes_Android\PressTheButton\PressTheButton\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.3.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="21.1.2"
-        sha1="debf30ce0a7560396b6235edef77e447006454c2">
-        <dex dex="G:\Users\Oscar\Projectes_Android\PressTheButton\PressTheButton\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-23.3.0_fd77012b69782f2df3d12d2f078f86281d066b13\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -57,39 +84,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="G:\Users\Oscar\Projectes_Android\PressTheButton\PressTheButton\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="21.1.2"
-        sha1="b512e6585a74fb9c3e18b7d75b1f34569d0fa716">
-        <dex dex="G:\Users\Oscar\Projectes_Android\PressTheButton\PressTheButton\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_dfbc953a4960b11a584afde2787f3678798a68bd\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="G:\Users\Oscar\Projectes_Android\PressTheButton\PressTheButton\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.3.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="21.1.2"
         sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
         <dex dex="G:\Users\Oscar\Projectes_Android\PressTheButton\PressTheButton\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-23.3.0_4df948a56014f6e1237fef886d631926b6928603\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="G:\Users\Oscar\Projectes_Android\PressTheButton\PressTheButton\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="21.1.2"
-        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
-        <dex dex="G:\Users\Oscar\Projectes_Android\PressTheButton\PressTheButton\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.3.0_12d38d0bb2f2fe9091589a4f21ae5d5a23a5e5bb\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="G:\Users\Oscar\Android_sdk\sdk\extras\android\m2repository\com\android\support\support-annotations\23.3.0\support-annotations-23.3.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="21.1.2"
-        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
-        <dex dex="G:\Users\Oscar\Projectes_Android\PressTheButton\PressTheButton\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.3.0_10964f60146c6a871d8291d9ce4724906c275951\classes.dex" />
     </item>
 
 </items>
