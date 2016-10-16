@@ -1,7 +1,7 @@
 package com.merce.oscar.pressthebutton;
 
 /**
- * Created by Oscar on 10/04/2016.
+ * Created by Oscar Merce.
  */
 public class Config {
 

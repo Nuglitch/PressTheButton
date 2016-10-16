@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 /**
- * Created by Oscar on 11/04/2016.
+ * Created by Oscar Merce.
  */
 abstract class ElementView extends View {
 

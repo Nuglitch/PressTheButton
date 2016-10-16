@@ -18,7 +18,7 @@ import android.widget.TextView;
 import java.util.Random;
 
 /**
- * Created by Oscar on 09/04/2016.
+ * Created by Oscar Merce.
  */
 public class CircleView extends ElementView implements View.OnClickListener, PendingTask {
     private Paint paintCircle;

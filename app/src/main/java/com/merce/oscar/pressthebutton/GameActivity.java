@@ -13,6 +13,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+/**
+ * Created by Oscar Merce.
+ */
 public class GameActivity extends AppCompatActivity {
 
     private int pressCount = 0; //counts the number of clicks to the button

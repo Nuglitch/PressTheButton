@@ -4,15 +4,15 @@ package com.merce.oscar.pressthebutton;
 import java.util.Random;
 
 /**
- * Created by Oscar on 11/04/2016.
+ * Created by Oscar Merce.
  */
 public class Utils {
 
     /**
-     * Return a random number between a and b
+     * Generate a random number between a and b
      * @param a
      * @param b
-     * @return random number
+     * @return random number between a and b
      */
     public static int getRandomNumber(int a, int b) {
         Random r = new Random();

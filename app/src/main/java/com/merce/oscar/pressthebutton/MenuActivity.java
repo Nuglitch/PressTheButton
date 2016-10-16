@@ -11,6 +11,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+/**
+ * Created by Oscar Merce.
+ */
 public class MenuActivity extends AppCompatActivity {
     static final int PICK_CONTACT_REQUEST = 1;
 
