@@ -47,14 +47,24 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        //start sounds
         SoundManager.getInstance().playBackgroundMusic();
+        //resume the game
+        if (counterTime > 0) {
+            mHandler.removeCallbacks(mRunnable);
+            mHandler.postDelayed(mRunnable, calculateVelocity());
+        }
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        //stop sounds
         SoundManager sm = SoundManager.getInstance();
         sm.stopBackgroundMusic();
+        sm.stopPlayEffect();
+        //pause the game
+        mHandler.removeCallbacks(mRunnable);
     }
 
     public void initGame() {
@@ -99,7 +109,19 @@ public class GameActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.putExtra("game_score", pressCount + "");
         setResult(RESULT_OK, intent);
-        finish();
+        removeClickListeners();
+
+
+        SoundManager sm = SoundManager.getInstance();
+        sm.playEndEffect();
+        Handler mHandler = new Handler();
+        Runnable mRunnable = new Runnable() {
+            @Override
+            public void run() {
+                finish();
+            }
+        };
+        mHandler.postDelayed(mRunnable, sm.getEndEffectDuration());
     }
 
     private void timerAlert() {
@@ -148,5 +170,11 @@ public class GameActivity extends AppCompatActivity {
 
     private long calculateVelocity() {
        return (long) (((pressCount / 10) + 1) * acceleration * Config.velocity);
+    }
+
+    private void removeClickListeners() {
+        for (ElementView t : tokens) {
+            t.setClickable(false); //remove on click events
+        }
     }
 }

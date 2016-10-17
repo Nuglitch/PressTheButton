@@ -15,7 +15,7 @@ import android.os.Handler;
 public class SoundManager {
     private static SoundManager instance = null;
     SoundPool soundEffects;
-    int maxMusics = 2;
+    int maxMusics = 3;
     MediaPlayer mp[];
     int maxStreams = 2;
     int soundIds[];
@@ -55,6 +55,7 @@ public class SoundManager {
         mp[0].setLooping(true);
         mp[1] = MediaPlayer.create(context, R.raw.music_loop_80s);
         mp[1].setLooping(true);
+        mp[2] = MediaPlayer.create(context, R.raw.game_over);
 
     }
 
@@ -72,14 +73,12 @@ public class SoundManager {
         }
     }
 
-    public void playEndEffect() {
-        if (musicOn) {
-            soundEffects.play(soundIds[1], 1, 1, 2, 0, 1.0f);
-        }
+    public int getEndEffectDuration() {
+        return mp[2].getDuration();
     }
 
     public void playBackgroundMusic() {
-        playMediaPlayer(0, 500);
+        playMediaPlayer(0, 200);
     }
 
     public void stopBackgroundMusic() {
@@ -87,11 +86,24 @@ public class SoundManager {
     }
 
     public void playMenuMusic() {
-        playMediaPlayer(1, 500);
+        playMediaPlayer(1, 200);
     }
 
     public void stopMenuMusic() {
         stopMediaPlayer(1);
+    }
+
+    public void playEndEffect() {
+        if (musicOn) {
+            stopBackgroundMusic();
+            if (!mp[2].isPlaying()) {
+                mp[2].start();
+            }
+        }
+    }
+
+    public void stopPlayEffect() {
+        stopMediaPlayer(2);
     }
 
     private void playMediaPlayer(final int musicId, final long waitTime) {
