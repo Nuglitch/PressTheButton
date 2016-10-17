@@ -15,20 +15,25 @@ import android.os.Handler;
 public class SoundManager {
     private static SoundManager instance = null;
     SoundPool soundEffects;
-    MediaPlayer bm;
-    MediaPlayer mm;
+    int maxMusics = 2;
+    MediaPlayer mp[];
     int maxStreams = 2;
     int soundIds[];
-    Context c;
-    boolean musicOn = true;
-    boolean soundEffectsOn = true;
+    boolean musicOn;
 
 
 
     protected SoundManager() { }
 
+    public void setMusicOn(boolean musicOn) {
+        this.musicOn = musicOn;
+    }
+
+    public boolean isMusicOn() {
+        return musicOn;
+    }
+
     public void init(Context context) {
-        c = context;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             AudioAttributes attrs = new AudioAttributes.Builder()
                     .setUsage(AudioAttributes.USAGE_GAME)
@@ -45,6 +50,12 @@ public class SoundManager {
         soundIds[0] = soundEffects.load(context, R.raw.bleep_sound, 1);
         soundIds[1] = soundEffects.load(context, R.raw.error, 1);
 
+        mp = new MediaPlayer[maxMusics];
+        mp[0] = MediaPlayer.create(context, R.raw.electronic_synth);
+        mp[0].setLooping(true);
+        mp[1] = MediaPlayer.create(context, R.raw.music_loop_80s);
+        mp[1].setLooping(true);
+
     }
 
 
@@ -56,54 +67,55 @@ public class SoundManager {
     }
 
     public void playTabEffect() {
-        if (soundEffectsOn) {
+        if (musicOn) {
             soundEffects.play(soundIds[0], 1, 1, 2, 0, 1.0f);
         }
     }
 
     public void playEndEffect() {
-        if (soundEffectsOn) {
+        if (musicOn) {
             soundEffects.play(soundIds[1], 1, 1, 2, 0, 1.0f);
         }
     }
 
     public void playBackgroundMusic() {
-        if (musicOn) {
-            if (bm == null || !bm.isPlaying()) {
-                bm = MediaPlayer.create(c, R.raw.electronic_synth);
-                bm.setLooping(true);
-                playMediaPlayer(bm, 100);
-            }
-        }
+        playMediaPlayer(0, 500);
     }
 
     public void stopBackgroundMusic() {
-        bm.stop();
+        stopMediaPlayer(0);
     }
 
     public void playMenuMusic() {
+        playMediaPlayer(1, 500);
+    }
+
+    public void stopMenuMusic() {
+        stopMediaPlayer(1);
+    }
+
+    private void playMediaPlayer(final int musicId, final long waitTime) {
         if (musicOn) {
-            if (mm == null || !mm.isPlaying()) {
-                mm = MediaPlayer.create(c, R.raw.music_loop_80s);
-                mm.setLooping(true);
-                playMediaPlayer(mm, 500);
+            if (!mp[musicId].isPlaying()) {
+                Handler mHandler = new Handler();
+                Runnable mRunnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        mp[musicId].start();
+                    }
+                };
+                mHandler.postDelayed(mRunnable, waitTime);
             }
         }
     }
 
-    public void stopMenuMusic() {
-        mm.stop();
-    }
-
-    private void playMediaPlayer(final MediaPlayer mp, final long waitTime) {
-        Handler mHandler = new Handler();
-        Runnable mRunnable = new Runnable() {
-            @Override
-            public void run() {
-                mp.start();
-            }
-        };
-        mHandler.postDelayed(mRunnable, waitTime);
+    private void stopMediaPlayer(int musicId) {
+        if (mp[musicId].isPlaying()) {
+            try {
+                mp[musicId].stop();
+                mp[musicId].prepare();
+            } catch (Exception e) {}
+        }
     }
 
     private void stopMusic() {
@@ -114,5 +126,14 @@ public class SoundManager {
     public void releaseSounds() {
         soundEffects.release();
         stopMusic();
+    }
+
+    public void changeMusicState() {
+        musicOn = !musicOn;
+        if (musicOn) {
+            playMenuMusic();
+        } else {
+            stopMenuMusic();
+        }
     }
 }
