@@ -6,16 +6,11 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.os.Handler;
 import android.os.Vibrator;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-
-import java.util.Random;
 
 /**
  * Created by Oscar Merce.
@@ -84,7 +79,7 @@ public class CircleView extends ElementView implements View.OnClickListener, Pen
 
     public void redraw() {
         this.setRandomColor();
-        counterTime = Config.totalTime;
+        counterTime = Config.TOTAL_TIME;
 
         this.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @SuppressLint("NewApi")

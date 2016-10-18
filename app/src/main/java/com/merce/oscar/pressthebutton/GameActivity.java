@@ -1,14 +1,18 @@
 package com.merce.oscar.pressthebutton;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -36,10 +40,26 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
         setVolumeControlStream(AudioManager.STREAM_MUSIC); //is able to change the volume
 
-        try {
-            initGame(); //start game
-        } catch (Exception e) {
 
+        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/MAXWELL_REGULAR.ttf");
+        ((TextView) findViewById(R.id.end_game_text)).setTypeface(font);
+
+        if (Config.FIRST_TIME) { //let's see the tutorial
+            Config.FIRST_TIME = false;
+            ((TextView) findViewById(R.id.instruction_text)).setTypeface(font);
+            ((TextView) findViewById(R.id.end_tutorial_text)).setTypeface(font);
+
+            Animation a = AnimationUtils.loadAnimation(this, R.anim.fade_anim);
+            findViewById(R.id.button_tutorial).startAnimation(a);
+
+            findViewById(R.id.button_tutorial).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    initGame(); //start game
+                }
+            });
+        } else {
+            initGame(); //start game
         }
 
     }
@@ -64,18 +84,25 @@ public class GameActivity extends AppCompatActivity {
         sm.stopBackgroundMusic();
         sm.stopPlayEffect();
         //pause the game
-        mHandler.removeCallbacks(mRunnable);
+        if (mHandler != null) {
+            mHandler.removeCallbacks(mRunnable);
+        }
     }
 
     public void initGame() {
-        initTimer();  //initialize timer function
-        pressCount = 0;
-        restartGame();  //init the game
+        try {
+            findViewById(R.id.tutorial_frame).setVisibility(View.GONE);
+            initTimer();  //initialize timer function
+            pressCount = 0;
+            restartGame();  //init the game
+        } catch (Exception e) {
+
+        }
     }
 
     private void initTimer() {
         mHandler = new Handler();
-        counterTime = Config.totalTime;
+        counterTime = Config.TOTAL_TIME;
         mRunnable = new Runnable() {
             @Override
             public void run() {
@@ -111,6 +138,10 @@ public class GameActivity extends AppCompatActivity {
         setResult(RESULT_OK, intent);
         removeClickListeners();
 
+        TextView endGameText = (TextView) findViewById(R.id.end_game_text);
+        Animation a = AnimationUtils.loadAnimation(this, R.anim.end_game_anim);
+        endGameText.startAnimation(a);
+        endGameText.setVisibility(View.VISIBLE);
 
         SoundManager sm = SoundManager.getInstance();
         sm.playEndEffect();
@@ -121,7 +152,7 @@ public class GameActivity extends AppCompatActivity {
                 finish();
             }
         };
-        mHandler.postDelayed(mRunnable, sm.getEndEffectDuration());
+        mHandler.postDelayed(mRunnable, Math.max(a.getDuration(), sm.getEndEffectDuration()));
     }
 
     private void timerAlert() {
@@ -133,7 +164,7 @@ public class GameActivity extends AppCompatActivity {
 
     public void setTimeEvent() {
         try {
-            counterTime = Config.totalTime;
+            counterTime = Config.TOTAL_TIME;
             mHandler.removeCallbacks(mRunnable);
             mHandler.postDelayed(mRunnable, calculateVelocity());
         } catch (Exception e) {
@@ -169,7 +200,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private long calculateVelocity() {
-       return (long) (((pressCount / 10) + 1) * acceleration * Config.velocity);
+       return (long) (((pressCount / 10) + 1) * acceleration * Config.VELOCITY);
     }
 
     private void removeClickListeners() {

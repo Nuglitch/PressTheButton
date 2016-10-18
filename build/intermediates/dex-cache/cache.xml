@@ -16,7 +16,7 @@
         jumboMode="true"
         optimize="true"
         revision="21.1.2"
-        sha1="884cebb02a0bd9cbffc45980001d41f57a2b4b71">
+        sha1="0b2c9662a48957fe8158836523837e5cc8ec6314">
         <dex dex="G:\Users\Oscar\Projectes_Android\PressTheButton\PressTheButton\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_dfbc953a4960b11a584afde2787f3678798a68bd\classes.dex" />
     </item>
     <item
@@ -70,7 +70,7 @@
         jumboMode="true"
         optimize="true"
         revision="21.1.2"
-        sha1="499c5b37c1088fed19c625a980d5e98e0058c017">
+        sha1="25eef237088c758873d0fda48b37a92a5bb0178e">
         <dex dex="G:\Users\Oscar\Projectes_Android\PressTheButton\PressTheButton\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_3d00d916da1f95df21e89c4662726281b876ad88\classes.dex" />
     </item>
     <item

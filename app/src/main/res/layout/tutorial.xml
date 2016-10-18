@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#a1000000"
+    android:weightSum="2"
+    android:paddingTop="100dp"
+    android:paddingBottom="100dp"
+    android:id="@+id/tutorial_frame">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <TextView
+            android:text="@string/game_instructions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:id="@+id/instruction_text"
+            android:textSize="35dp"
+            android:padding="30dp"
+            android:textColor="@android:color/background_light" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:id="@+id/button_container_tutorial">
+
+        <TextView
+            android:text="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:id="@+id/button_tutorial"
+            android:textSize="150px"
+            android:background="@drawable/circle"
+            android:layout_margin="30dp"
+            android:textColor="@android:color/background_light"/>
+
+        <TextView
+            android:text="@string/end_tutorial_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/end_tutorial_text"
+            android:textSize="20dp"
+            android:padding="30dp"
+            android:textColor="@android:color/background_light"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -28,15 +28,15 @@ public class MenuActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_menu);
-        setVolumeControlStream(AudioManager.STREAM_MUSIC); //is able to change the volume
 
-        TextView title = (TextView) findViewById(R.id.app_title);
-        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/MAXWELL_REGULAR.ttf");
-        title.setTypeface(font);
+        setVolumeControlStream(AudioManager.STREAM_MUSIC); //is able to change the volume
         SoundManager.getInstance().init(this);
 
-        TextView startButton = (TextView) findViewById(R.id.start_button);
+        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/MAXWELL_REGULAR.ttf");
+        ((TextView) findViewById(R.id.app_title)).setTypeface(font);
+
         font = Typeface.createFromAsset(getAssets(), "fonts/MAXWELL_LIGHT.ttf");
+        TextView startButton = (TextView) findViewById(R.id.start_button);
         startButton.setTypeface(font);
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +50,7 @@ public class MenuActivity extends AppCompatActivity {
         });
 
         initConfigurationButtons();
+        checkFirstTime();
     }
 
     @Override
@@ -91,8 +92,8 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     private void initConfigurationButtons() {
-        SharedPreferences prfs = getSharedPreferences(Config.PREFS_NAME, Context.MODE_PRIVATE);
-        SoundManager.getInstance().setMusicOn(prfs.getBoolean(Config.PREFS_SOUND, true));
+        SharedPreferences settings = getSharedPreferences(Config.PREFS_NAME, Context.MODE_PRIVATE);
+        SoundManager.getInstance().setMusicOn(settings.getBoolean(Config.PREFS_SOUND, true));
         setImageSoundButton();
 
         ImageButton soundButton = (ImageButton) findViewById(R.id.sound_button);
@@ -114,8 +115,14 @@ public class MenuActivity extends AppCompatActivity {
         SharedPreferences settings = getSharedPreferences(Config.PREFS_NAME, 0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putBoolean(Config.PREFS_SOUND, SoundManager.getInstance().isMusicOn());
+        editor.putBoolean(Config.PREFS_FIRST, false);
 
         // Commit the edits!
         editor.commit();
+    }
+
+    private void checkFirstTime() {
+        SharedPreferences settings = getSharedPreferences(Config.PREFS_NAME, Context.MODE_PRIVATE);
+        Config.FIRST_TIME = settings.getBoolean(Config.PREFS_FIRST, true);
     }
 }

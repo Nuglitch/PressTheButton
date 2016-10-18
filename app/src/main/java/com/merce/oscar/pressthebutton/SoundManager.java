@@ -17,7 +17,7 @@ public class SoundManager {
     SoundPool soundEffects;
     int maxMusics = 3;
     MediaPlayer mp[];
-    int maxStreams = 2;
+    int maxStreams = 1;
     int soundIds[];
     boolean musicOn;
 
@@ -48,7 +48,6 @@ public class SoundManager {
         }
         soundIds = new int[maxStreams];
         soundIds[0] = soundEffects.load(context, R.raw.bleep_sound, 1);
-        soundIds[1] = soundEffects.load(context, R.raw.error, 1);
 
         mp = new MediaPlayer[maxMusics];
         mp[0] = MediaPlayer.create(context, R.raw.electronic_synth);
