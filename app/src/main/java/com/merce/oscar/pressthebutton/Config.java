@@ -10,5 +10,6 @@ public class Config {
     public static final String PREFS_NAME = "Preferences";
     public static final String PREFS_SOUND = "Sound";
     public static final String PREFS_FIRST = "First";
+    public static final String PREFS_SCORE = "game_score";
     public static  boolean FIRST_TIME = true;
 }

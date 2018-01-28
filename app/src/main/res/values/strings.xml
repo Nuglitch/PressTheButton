@@ -4,6 +4,6 @@
     <string name="start_button">Tap to play</string>
     <string name="app_title">Press The Button</string>
     <string name="end_game">Game Over</string>
-    <string name="game_instructions">Press on the color buttons before the time ends.</string>
+    <string name="game_instructions">Press on the colored buttons before the time finishes.</string>
     <string name="end_tutorial_text">Press on the button to start the game!</string>
 </resources>

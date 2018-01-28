@@ -1,6 +1,8 @@
 package com.merce.oscar.pressthebutton;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.os.Bundle;
@@ -134,7 +136,16 @@ public class GameActivity extends AppCompatActivity {
 
     private void endGame() {
         Intent intent = new Intent();
-        intent.putExtra("game_score", pressCount + "");
+
+        SharedPreferences settings = getSharedPreferences(Config.PREFS_NAME, Context.MODE_PRIVATE);
+        int _auxScore = settings.getInt(Config.PREFS_SCORE, 0);
+        if (pressCount > _auxScore) {
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putInt(Config.PREFS_SCORE, pressCount);
+            // Commit the edits!
+            editor.commit();
+        }
+
         setResult(RESULT_OK, intent);
         removeClickListeners();
 

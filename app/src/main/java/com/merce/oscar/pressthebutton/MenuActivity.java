@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -51,6 +50,7 @@ public class MenuActivity extends AppCompatActivity {
 
         initConfigurationButtons();
         checkFirstTime();
+        displayGameScore();
     }
 
     @Override
@@ -73,12 +73,14 @@ public class MenuActivity extends AppCompatActivity {
 
     protected void onActivityResult (int requestCode, int resultCode, Intent data) {
         // Check which request we're responding to
-        if (requestCode == PICK_CONTACT_REQUEST) {
-            // Make sure the request was successful
-            if (resultCode == RESULT_OK) {
-                ((TextView) findViewById(R.id.game_score)).setText(data.getStringExtra("game_score"));
-            }
+        if (requestCode == PICK_CONTACT_REQUEST && resultCode == RESULT_OK) {
+            displayGameScore();
         }
+    }
+
+    private void displayGameScore() {
+        SharedPreferences settings = getSharedPreferences(Config.PREFS_NAME, Context.MODE_PRIVATE);
+        ((TextView) findViewById(R.id.game_score)).setText(settings.getInt(Config.PREFS_SCORE, 0) + "");
     }
 
     private void setImageSoundButton() {
@@ -112,7 +114,7 @@ public class MenuActivity extends AppCompatActivity {
 
         // We need an Editor object to make preference changes.
         // All objects are from android.context.Context
-        SharedPreferences settings = getSharedPreferences(Config.PREFS_NAME, 0);
+        SharedPreferences settings = getSharedPreferences(Config.PREFS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
         editor.putBoolean(Config.PREFS_SOUND, SoundManager.getInstance().isMusicOn());
         editor.putBoolean(Config.PREFS_FIRST, false);
